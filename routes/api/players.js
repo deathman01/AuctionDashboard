@@ -8,8 +8,12 @@ const Team = require('../../models/Teams');
 // @desc    Get All Players
 // @access  Public
 router.get('/', (req,res) => {
-    Player.find()
-        .then(items => res.json(items))
+  
+  Player.find()
+      .then(players => {
+        console.log('players list fetch', players);
+        res.json(players)
+      })
 });
 
 router.put('/:id/:team', (req,res) => {

@@ -23,6 +23,21 @@ mongoose.connect(db, {useNewUrlParser: true})
   .then(() => console.log("mongoose connected"))
   .catch(err => console.log(err));
 
+var db_connect = mongoose.connection;
+
+db_connect.on('open', function () {
+  db_connect.db.listCollections().toArray(function (err, collectionNames) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(collectionNames);
+  });
+});  
+
+//Bind connection to error event (to get notification of connection errors)
+db_connect.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 //Use Routes
 app.use('/api/players', players);
 app.use('/api/teams', teams);
