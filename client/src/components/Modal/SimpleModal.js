@@ -8,7 +8,7 @@ import TeamsRadio from './TeamsRadio';
 import myclasses from './SimpleModal.module.css';
 
 function getModalStyle() {
-  const top = 50 
+  const top = 50
   const left = 50
 
   return {
@@ -29,36 +29,41 @@ const styles = theme => ({
   },
 });
 
-
-
 class SimpleModal extends React.Component {
-  
   render() {
-    
     const { classes } = this.props;
     let button = null;
     if(this.props.playerTeam){
-      button = <Button variant="contained" color="secondary" className={classes.button} onClick={() => this.props.handleSold(this.props.player, this.props.playerTeam , this.props.auctionScore)}>
-            Sell
-          </Button>
+      button = <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        onClick={() => this.props.handleSold(this.props.player,
+                          this.props.playerTeam , this.props.auctionScore)}
+      >
+        Sell
+      </Button>
     }
     let mydiv = null
     console.log(this.props.loading)
     if(this.props.loading === false){
       mydiv = <div style={getModalStyle()} className={classes.paper}>
-      <Typography variant="h6" id="modal-title">
-        Sell Player No. {this.props.player.Number} i.e "{this.props.player.Name}" for {this.props.auctionScore} points to:
-      </Typography>
-      <TeamsRadio playerTeam={this.props.playerTeam} teams={this.props.teams} handleChange={(e) => this.props.handleTeamSelect(e)}/>
-      {button}
-    </div>
+        <Typography variant="h6" id="modal-title">
+          Sell Player No. {this.props.player.Number} i.e "{this.props.player.Name}" for {this.props.auctionScore} points to:
+        </Typography>
+        <TeamsRadio
+          playerTeam={this.props.playerTeam}
+          teams={this.props.teams}
+          handleChange={(e) => this.props.handleTeamSelect(e)}
+        />
+        {button}
+      </div>
     }else{
       mydiv = <div style={getModalStyle()} className={classes.paper}>
-      <div>
-        <div className={myclasses.hourglass}></div>
+        <div>
+          <div className={myclasses.hourglass}></div>
+        </div>
       </div>
-          
-            </div>
     }
     return (
       <div>
@@ -67,8 +72,8 @@ class SimpleModal extends React.Component {
           aria-describedby="simple-modal-description"
           open={this.props.open}
           onClose={this.props.handleClose}
-            >
-            {mydiv}
+        >
+          {mydiv}
         </Modal>
       </div>
     );

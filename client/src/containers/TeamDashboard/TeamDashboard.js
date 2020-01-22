@@ -14,17 +14,20 @@ export default class PlayerDashboard extends Component {
       teams: []
     }
   }
+
   componentWillMount(){
     this.setState({
       teams: this.props.teams
     })
   }
+
   modalClose = () => {
     this.setState({
       modalOpen: false,
       teamList: []
     })
   }
+
   handleViewClick = (id) => {
     axios.get(`http://localhost:5000/api/teams/${id}`)
     .then(res => this.setState({
@@ -38,15 +41,30 @@ export default class PlayerDashboard extends Component {
   render() {
     return (
       <Aux>
-      <div className={classes.fullscreen}>
-      <div className={classes.Card}>
-      {this.props.teams.map((team,index) => {
-        return (<SimpleCard key={index} name={team.Name} Amount={team.Amount} noOfPlayers={team.noOfPlayers} id={team._id} handleViewClick={this.handleViewClick} teamList={this.state.teamList} modalOpen={this.modalOpen} players={team.playerNo}/>)
-      })}
-    </div>
-      <TeamListModal open={this.state.modalOpen} handleClose={this.modalClose} teamList={this.state.teamList}/>
-      </div>
-        
+        <div className={classes.fullscreen}>
+          <div className={classes.Card}>
+            {this.props.teams.map((team,index) => {
+              return (
+                <SimpleCard
+                  key={index}
+                  name={team.Name}
+                  Amount={team.Amount}
+                  noOfPlayers={team.noOfPlayers}
+                  id={team._id}
+                  handleViewClick={this.handleViewClick}
+                  teamList={this.state.teamList}
+                  modalOpen={this.modalOpen}
+                  players={team.playerNo}
+                />
+              )
+            })}
+          </div>
+          <TeamListModal
+            open={this.state.modalOpen}
+            handleClose={this.modalClose}
+            teamList={this.state.teamList}
+          />
+        </div>
       </Aux>
     )
   }

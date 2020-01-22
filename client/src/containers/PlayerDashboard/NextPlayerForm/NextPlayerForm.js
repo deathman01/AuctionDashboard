@@ -59,7 +59,7 @@ const styles = theme => ({
   },
 });
 
-class OutlinedTextFields extends React.Component {
+class NextPlayerForm extends React.Component {
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
@@ -71,33 +71,42 @@ class OutlinedTextFields extends React.Component {
 
     return (
       <Aux>
-      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.props.handleSubmit}>
-      <div>
-      <TextField
-      id="outlined-name"
-      label="Number"
-      className={classes.textField}
-      onChange={this.props.handleChange}
-      margin="normal"
-      variant="outlined"
-    />
-      </div>
-      <Button variant="contained" color="secondary" onClick={this.props.clicked} className={classes.button}>
-      Rules
-    </Button>
-        <Button variant="contained" color="primary" value="Submit" type="Submit" className={classes.button}>
-        Send
-        <Icon className={classes.rightIcon}>send</Icon>
-      </Button>
-      </form>
+        <form className={classes.container} noValidate autoComplete="off" onSubmit={this.props.handleSubmit}>
+          <div>
+            <TextField
+            id="outlined-name"
+            label="Number"
+            className={classes.textField}
+            onChange={this.props.handleChange}
+            margin="normal"
+            variant="outlined"
+            />
+          </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.props.clicked}
+            className={classes.button}
+          >
+            Rules
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            value="Submit"
+            type="Submit"
+            className={classes.button}
+          >
+            Send <Icon className={classes.rightIcon}>send</Icon>
+          </Button>
+        </form>
       </Aux>
-      
     );
   }
 }
 
-OutlinedTextFields.propTypes = {
+NextPlayerForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedTextFields);
+export default withStyles(styles)(NextPlayerForm);

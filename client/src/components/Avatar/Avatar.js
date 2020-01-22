@@ -29,8 +29,7 @@ const styles = {
   },
 };
 
-function ImageAvatars(props) {
-  
+const ImageAvatars = (props) => {
   const { classes } = props;
   let src = `assets/${props.image}.jpg`;
   let size = props.size;
@@ -43,13 +42,13 @@ function ImageAvatars(props) {
     }else{
       return (
         <Aux>
-        <Avatar alt="o" src={src} className={classes.bigAvatar} />
-        <Avatar alt="o" src='assets/sold.png' className={classes.bigAvatarSold} />
+          <Avatar alt="o" src={src} className={classes.bigAvatar} />
+          <Avatar alt="o" src='assets/sold.png' className={classes.bigAvatarSold} />
         </Aux>
-        
+
     );
     }
-    
+
   }
   if(size === "small"){
     return (

@@ -16,28 +16,28 @@ const PlayerInfo = (props) => {
   return (
     <div className={classes.Details}>
       <div className="Avatar">
-        
+
         <ImageAvatars image={props.player.Number} size="big" team={props.player.Team}/>
       </div>
       <div className={classes.Upinfo}>
         <Paper>
           <div className={classes.Info}>
-          <Typography variant="h5" component="h2">
-          {props.player.Name}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {department}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {props.player.Hostel}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {props.player.Year}
-        </Typography>
-          <LetterAvatars position={props.player.Position}/>
+            <Typography variant="h5" component="h2">
+              {props.player.Name}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {department}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {props.player.Hostel}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {props.player.Year}
+            </Typography>
+            <LetterAvatars position={props.player.Position}/>
           </div>
         </Paper>
-        </div> 
+      </div>
     </div>
   )
 }
