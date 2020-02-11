@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Aux from '../../hoc/Auxillary';
 
 const styles = {
   avatar: {
@@ -10,13 +9,16 @@ const styles = {
   },
   bigAvatar: {
     margin: 10,
-    width: 250,
-    height: 250,
+    width: 200,
+    height: 200,
+    backgroundColor: 'white',
+    border: '2px solid blue' ,
+    borderRadius: 100,
   },
   bigAvatarSold: {
     margin: 10,
-    width: 250,
-    height: 250,
+    width: 200,
+    height: 200,
     position: "absolute",
     top: "20px",
     left: "40px",
@@ -35,25 +37,27 @@ const ImageAvatars = (props) => {
   let size = props.size;
   let team = props.team
   if(size === "big"){
-    if(team === undefined){
+    if(team === null){
       return (
-        <Avatar alt="o" src={src} className={classes.bigAvatar} />
-    );
+        <Avatar
+          alt="o" src = 'https://img.icons8.com/wired/128/000000/circled-user.png'
+          className={classes.bigAvatar}
+        />
+      );
     }else{
       return (
-        <Aux>
-          <Avatar alt="o" src={src} className={classes.bigAvatar} />
+        <div>
+          <Avatar alt="o" src = 'https://img.icons8.com/wired/128/000000/circled-user.png' className={classes.bigAvatar} />
           <Avatar alt="o" src='assets/sold.png' className={classes.bigAvatarSold} />
-        </Aux>
+        </div>
 
-    );
+      );
     }
-
   }
   if(size === "small"){
     return (
       <Avatar alt="o" src={src} className={classes.smallAvatar} />
-  );
+    );
   }
 
 }

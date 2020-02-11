@@ -5,9 +5,9 @@ const Score = (props) => {
   return (
       <div className={classes.score}>
       <Paper>
-      <h3>{props.score}</h3>
+        <h3>{props.score}</h3>
       </Paper>
-      </div> 
+      </div>
   )
 }
 

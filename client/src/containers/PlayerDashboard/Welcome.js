@@ -1,42 +1,47 @@
 import React from 'react'
-import Aux from '../../../hoc/Auxillary';
 import Typography from '@material-ui/core/Typography';
-import myclasses from './Welcome.module.css';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
 export default function Welcome(props) {
   return (
-    <Aux>
-      <div className={myclasses.center}>
+    <div>
+      <div style = {{marginTop: 200}}>
         <Typography variant="h3" component="h2">
-          Online Auction System
+          Players Selection System
         </Typography>
         <br/>
         <Typography variant="h3" component="h2">
           IIEST, Shibpur
         </Typography>
-        <div onClick={props.clicked} className={myclasses.gap}>
-          <Fab variant="extended" color="primary" aria-label="Add">
+        <div
+          onClick={props.clicked}
+          style={{marginTop: 100}}
+        >
+          <Fab
+            variant="extended"
+            color="primary"
+            aria-label="Add"
+          >
             <NavigationIcon/>
             Start Auction
           </Fab>
         </div>
       </div>
-      <div className={myclasses.moregap}>
+      <div style={{marginTop: 180}}>
+        <Typography style= {{fontSize: 20}}>
+          Auctioneer : <strong>TBD</strong>
+        </Typography>
+        <Typography style= {{fontSize: 20}}>
+          Leauge : <strong>TBA</strong>
+        </Typography>
+        <Typography style= {{fontSize: 20}}>
+          Chairman : <strong>TBD</strong>
+        </Typography>
         <Typography component="p">
           Developer: <strong>Mohit Negi, Abhishek Kumar</strong>
         </Typography>
-        <Typography component="p">
-          Auctioneer : <strong>TBD</strong>
-        </Typography>
-        <Typography component="p">
-          Leauge : <strong>TBA</strong>
-        </Typography>
-        <Typography component="p">
-          Chairman : <strong>TBD</strong>
-        </Typography>
       </div>
-    </Aux>
+    </div>
   )
 }

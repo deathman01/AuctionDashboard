@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   Teams.associate = function(models) {
     Teams.belongsTo(models.Users, { as: 'captain', foreignKey: 'captainId', targetKey: 'id' });
     Teams.hasMany(models.Players, {
+      as: 'players',
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE'
     });

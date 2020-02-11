@@ -35,11 +35,16 @@ class SimpleModal extends React.Component {
     let button = null;
     if(this.props.playerTeam){
       button = <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        onClick={() => this.props.handleSold(this.props.player,
-                          this.props.playerTeam , this.props.auctionScore)}
+        variant = "contained"
+        color = "secondary"
+        className = {classes.button}
+        onClick = {() =>
+                  this.props.handleSold(
+                    this.props.player,
+                    this.props.playerTeam ,
+                    this.props.auctionScore
+                  )
+                }
       >
         Sell
       </Button>
@@ -47,31 +52,34 @@ class SimpleModal extends React.Component {
     let mydiv = null
     console.log(this.props.loading)
     if(this.props.loading === false){
-      mydiv = <div style={getModalStyle()} className={classes.paper}>
-        <Typography variant="h6" id="modal-title">
-          Sell Player No. {this.props.player.Number} i.e "{this.props.player.Name}" for {this.props.auctionScore} points to:
+      mydiv = <div style = {getModalStyle()} className = {classes.paper}>
+        <Typography variant = "h6" id = "modal-title">
+          Player No. {this.props.player.id}<br/>
+          Name: "{this.props.player.name}"<br/>
+          Auction Price: {this.props.auctionScore}<br/>
+          Select Team:
         </Typography>
         <TeamsRadio
-          playerTeam={this.props.playerTeam}
-          teams={this.props.teams}
-          handleChange={(e) => this.props.handleTeamSelect(e)}
+          playerTeam = {this.props.playerTeam}
+          teams = {this.props.teams}
+          handleChange = {(e) => this.props.handleTeamSelect(e)}
         />
         {button}
       </div>
     }else{
-      mydiv = <div style={getModalStyle()} className={classes.paper}>
+      mydiv = <div style = {getModalStyle()} className = {classes.paper}>
         <div>
-          <div className={myclasses.hourglass}></div>
+          <div className = {myclasses.hourglass}></div>
         </div>
       </div>
     }
     return (
       <div>
         <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.props.open}
-          onClose={this.props.handleClose}
+          aria-labelledby = "simple-modal-title"
+          aria-describedby = "simple-modal-description"
+          open = {this.props.open}
+          onClose = {this.props.handleClose}
         >
           {mydiv}
         </Modal>

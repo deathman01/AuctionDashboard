@@ -1,17 +1,52 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ImageAvatars from '../Avatar/Avatar';
-import myclasses from './SImpleCard.module.css'
+import * as Colors from '../../configs/Colors';
+
+class SimpleCard extends Component {
+  render(){
+    const { id, name, captain, balance, noOfPlayers } = this.props;
+    return (
+      <Card
+        style = {styles.card}
+        onClick={() => this.props.handleViewClick(this.props.id)}
+      >
+        <div>
+          <Typography
+            style = {styles.title}
+            variant="h4"
+            component="h2"
+          >
+            {name}
+          </Typography>
+          {/*<div className={myclasses.Avatar}>
+            {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
+          </div>*/}
+          <div style = {{marginTop: 30}}>
+            <Typography style = {{fontSize: 20}} component="p">
+              Team Captain: <strong>{captain}</strong>
+            </Typography>
+            <Typography style = {{fontSize: 20}} component="p">
+              Remaining Balance: <strong>{balance}</strong>
+            </Typography>
+            <Typography style = {{fontSize: 20}} component="p">
+              No of Players: <strong>{noOfPlayers}</strong>
+            </Typography>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+}
+
 const styles = {
   card: {
-    minWidth: 275,
-    width: 300,
-    height: 240,
-    boxSizing: "border-box" 
+    margin: 5,
+    minWidth: 250,
+    minHeight: 200,
+    boxSizing: "border-box"
   },
   bullet: {
     display: 'inline-block',
@@ -19,46 +54,13 @@ const styles = {
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    padding: 5,
+    backgroundColor: Colors.PRIMARY,
+    color: Colors.WHITE,
   },
   pos: {
     marginBottom: 12,
   },
 };
 
-function SimpleCard(props) {
-  const { classes } = props;
-
-  return (
-    <Card className={classes.card} onClick={() => props.handleViewClick(props.id)} >
-      <CardContent>
-      <div className={myclasses.Outer}>
-      <Typography variant="h4" component="h2">
-      {props.name}
-    </Typography>
-    <div className={myclasses.Avatar}>
-    
-    {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
-    
-    </div>
-  <div className={myclasses.Inner}>
-  <Typography component="p">
-  Remaining Purse: <strong>{props.Amount}</strong>
-  </Typography>
-  <Typography component="p">
-  No of Players: <strong>{props.noOfPlayers}</strong>
-  </Typography>
-  </div>
-      </div>
-        
-        
-      </CardContent>
-    </Card>
-  );
-}
-
-SimpleCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleCard);
+export default SimpleCard;

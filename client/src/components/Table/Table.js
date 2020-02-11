@@ -21,6 +21,7 @@ const CustomTableCell = withStyles(theme => ({
 const styles = theme => ({
   root: {
     width: '100%',
+    align: 'center',
     marginTop: theme.spacing.unit * 1,
     overflowX: 'auto',
   },
@@ -35,26 +36,23 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-
-
-
-
+// let id = 0;
+// function createData(name, calories, fat, carbs, protein) {
+//   id += 1;
+//   return { id, name, calories, fat, carbs, protein };
+// }
 
 function CustomizedTable(props) {
-  const { classes } = props;
-  let rows = [];
-    
-    props.teamList.forEach((player) => {
-      if(player.price === 0){
-        player.price = "NA"
-      }
-        rows.push(createData(player.Name, player.Department, player.Position, player.Hostel, player.price))
-    })
+  console.log('props in table', props);
+  const { classes, players } = props;
+  // let rows = props.players;
+
+    // props.players.forEach((player) => {
+    //   if(player.price === 0){
+    //     player.price = "NA"
+    //   }
+    //     rows.push(createData(player.Name, player.Department, player.Position, player.Hostel, player.price))
+    // })
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -62,21 +60,21 @@ function CustomizedTable(props) {
           <TableRow>
             <CustomTableCell>Player Name</CustomTableCell>
             <CustomTableCell align="right">Department</CustomTableCell>
-            <CustomTableCell align="right">Position</CustomTableCell>
+            <CustomTableCell align="right">Role</CustomTableCell>
             <CustomTableCell align="right">Hostel</CustomTableCell>
             <CustomTableCell align="right">Price</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {players.map(row => (
             <TableRow className={classes.row} key={row.id}>
               <CustomTableCell component="th" scope="row">
                 {row.name}
               </CustomTableCell>
-              <CustomTableCell align="right">{row.calories}</CustomTableCell>
-              <CustomTableCell align="right">{row.fat}</CustomTableCell>
-              <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-              <CustomTableCell align="right">{row.protein}</CustomTableCell>
+              <CustomTableCell align="right">{row.dept}</CustomTableCell>
+              <CustomTableCell align="right">{row.role}</CustomTableCell>
+              <CustomTableCell align="right">{row.hostel}</CustomTableCell>
+              <CustomTableCell align="right">{row.price}</CustomTableCell>
             </TableRow>
           ))}
         </TableBody>

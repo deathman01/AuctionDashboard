@@ -10,10 +10,11 @@ router.post('/add', middleware.checkToken, async(req, res) => {
       Object.assign({
         name: req.body.name,
         desc: req.body.desc,
-        yr: req.body.yr,
         dept: req.body.dept,
+        role: req.body.role,
         hostel: req.body.hostel,
-        position: req.body.position,
+        bowlingHand: req.body.bowlingHand,
+        battingHand: req.body.battingHand,
         phone: req.body.phone,
         whatsApp: req.body.whatsApp,
         availability: req.body.availability,
@@ -36,9 +37,9 @@ router.post('/add', middleware.checkToken, async(req, res) => {
   }
 });
 
-router.get('/', middleware.checkToken, (req,res) => {
+router.get('/', (req,res) => {
   Players.findAll({
-    attributes: ['id','name', 'desc', 'yr', 'dept', 'hostel', 'position', 'phone', 'whatsApp', 'availability', 'price', 'picUrl'],
+    attributes: ['id','name', 'desc', 'dept', 'hostel', 'role', 'battingHand', 'bowlingHand', 'phone', 'whatsApp', 'availability', 'price', 'picUrl'],
     include: [{
       attributes: ['name', 'id'],
       model: Teams,
@@ -57,7 +58,30 @@ router.get('/', middleware.checkToken, (req,res) => {
   })
 });
 
-router.put('/assignTeam', middleware.checkToken, async (req,res) => {
+router.get('/:playerId', (req,res) => {
+    Players.findOne({
+      attributes: ['id','name', 'desc', 'dept', 'hostel', 'role', 'battingHand', 'bowlingHand', 'phone', 'whatsApp', 'availability', 'price', 'picUrl'],
+      include: [
+        {
+          attributes: ['name', 'id'],
+          model: Teams,
+        }
+      ],
+      where: {id: req.params.playerId}
+    })
+    .then(player => {
+      return res.json({
+        success: true,
+        ...player.dataValues,
+      })
+    })
+    .catch(e => {
+      console.log('get player by id err--------', e);
+      return res.status(400).send('try again');
+    })
+});
+
+router.put('/assignTeam', async (req,res) => {
   const { teamId, playerId, price} = req.body;
   const team = await Teams.findOne({where: {id: req.body.teamId}})
   if(team){

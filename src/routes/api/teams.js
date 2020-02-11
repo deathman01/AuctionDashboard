@@ -6,7 +6,10 @@ var { Teams, Users, Players } = require('../../models');
 
 router.post('/add', middleware.checkToken, async(req, res) => {
   const captainId = req.decoded.userId;
-  const initialBalance = 10000;
+  var initialBalance = 10000;
+  if(req.body.balance)
+    initialBalance = req.body.balance;
+
   try {
     let user = await Teams.create(
       Object.assign({
@@ -33,15 +36,23 @@ router.post('/add', middleware.checkToken, async(req, res) => {
   }
 });
 
-router.get('/', middleware.checkToken, (req,res) => {
+router.get('/', (req,res) => {
     Teams.findAll({
-      attributes: ['id','name', 'desc', 'logoUrl'],
-      include: [{
-        attributes: ['name', 'id'],
-        model: Users,
-        as: 'captain',
-        required: false
-      }]
+      attributes: ['id','name', 'desc', 'logoUrl', 'balance'],
+      include: [
+        {
+          attributes: ['name', 'id'],
+          model: Users,
+          as: 'captain',
+          required: false
+        },
+        {
+          attributes: ['name', 'id'],
+          model: Players,
+          as: 'players',
+          required: false
+        }
+      ]
     })
     .then(teams => {
       return res.json({
@@ -56,12 +67,9 @@ router.get('/', middleware.checkToken, (req,res) => {
     })
 });
 
-router.put('/details', middleware.checkToken, (req,res) => {
-  console.log('req in team details', req.body);
-    const teamId = req.body.teamId;
+router.get('/:teamId', (req,res) => {
     Teams.findOne({
-      where: {id: teamId},
-      attributes: ['id','name', 'desc', 'balance', 'logoUrl'],
+      attributes: ['id','name', 'desc', 'logoUrl', 'balance'],
       include: [
         {
           attributes: ['name', 'id'],
@@ -72,19 +80,21 @@ router.put('/details', middleware.checkToken, (req,res) => {
         {
           attributes: ['name', 'id'],
           model: Players,
+          as: 'players',
+          required: false
         }
-      ]
+      ],
+      where: {id: req.params.teamId}
     })
     .then(team => {
-      const response = {
+      return res.json({
         success: true,
         ...team.dataValues,
-        playersCount: team.Players.length,
-      }
-      return res.json(response);
+        noOfPlayers: team.players.length,
+      })
     })
     .catch(e => {
-      console.log('get team details err--------', e);
+      console.log('get team list err--------', e);
       return res.status(400).send('try again');
     })
 });

@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Auxillary';
-import Welcome from './Welcome/Welcome';
+import Welcome from './Welcome';
 import PlayerDetail from './PlayerDetail/PlayerDetail';
 import NextPlayerForm from './NextPlayerForm/NextPlayerForm';
-import classes from './PlayerDashboard.module.css';
 
 export default class PlayerDashboard extends Component {
   render() {
     let display;
     if(this.props.displayWelcomePage){
-      display = <Welcome clicked={this.props.StartAuction}/>
-    }else{
+      display = <Welcome clicked={this.props.startAuction}/>
+    }
+    else{
       if(this.props.displayPlayerDetail){
           display = <PlayerDetail
-          player={this.props.player}
+          player = {this.props.player}
           playerTeam = {this.props.playerTeam}
           auctionScore = {this.props.auctionScore}
           openmodal = {this.props.selectTeam}
-          score={this.props.auctionScore}
+          score = {this.props.auctionScore}
           teams = {this.props.teams}
           loading = {this.props.loading}
           increment={this.props.auctionIncrement}
@@ -29,21 +28,26 @@ export default class PlayerDashboard extends Component {
           handleSold = {this.props.handleSold}
           backToForm = {this.props.backToForm}
         />
-      }else{
+      }
+      else{
         display = <NextPlayerForm
-          clicked={this.props.OpenRulePage}
-          playerNumber = {this.props.playerNumberToBeDisplayed}
-          handleChange = {this.props.handleNextPlayerFormChange}
+          clicked = {this.props.OpenRulePage}
           handleSubmit = {this.props.handleNextPlayerFormSubmit}
         />
       }
     }
     return (
-      <Aux>
-        <div className={classes.fullscreen}>
+      <div>
+        <div style = {styles.container}>
           {display}
         </div>
-      </Aux>
+      </div>
     )
   }
 }
+
+const styles = {
+  container: {
+    minHeight: '77vh'
+  },
+};

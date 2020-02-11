@@ -18,10 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     desc: {
       type: DataTypes.STRING,
     },
-    yr: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     dept: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,9 +26,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    position: {
+    role: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    battingHand: {
+      type: DataTypes.STRING,
+    },
+    bowlingHand: {
+      type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.STRING,
