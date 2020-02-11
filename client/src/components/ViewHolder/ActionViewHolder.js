@@ -4,16 +4,12 @@ import React, { Component } from 'react';
 import * as Colors from '../../configs/Colors';
 import TeamForm from '../Forms/TeamForm';
 import PlayerForm from '../Forms/PlayerForm';
+import UserForm from '../Forms/UserForm';
 
 import {
-  Grid,
   Typography,
   Card,
   CardContent,
-  CardActionArea,
-  CardMedia,
-  CardActions,
-  Button
 } from '@material-ui/core';
 
 class ActionViewHolder extends Component{
@@ -34,7 +30,7 @@ class ActionViewHolder extends Component{
                 Actions:
               </Typography>
             </CardContent>
-            <CardContent style = {{backgroundColor: Colors.WHITE}}>
+            <CardContent style = {{ backgroundColor: Colors.WHITE}}>
               {
                 control === 'teams' &&
                 <TeamForm
@@ -45,6 +41,12 @@ class ActionViewHolder extends Component{
                 control === 'players' &&
                 <PlayerForm
                   handleAddPlayer = {this.props.handleAddPlayer}
+                />
+              }
+              {
+                control === 'users' &&
+                <UserForm
+                  handleAddUser = {this.props.handleAddUser}
                 />
               }
             </CardContent>

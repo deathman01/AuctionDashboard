@@ -47,7 +47,7 @@ export default class RequestService {
         const res = await axios({ method: 'PUT',  url: `${this.url}${id}`, data, headers  });
         return res.data;
       } catch (error) {
-        return error.response;
+        return error.response.data;
       }
     }
     else{
@@ -55,7 +55,7 @@ export default class RequestService {
         const res = await axios({ method: 'PUT',  url: `${this.url}${id}`, data, headers });
         return res.data;
       } catch (error) {
-        return error.response;
+        return error.response.data;
       }
     }
   };

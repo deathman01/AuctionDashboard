@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SimpleCard from '../../components/SimpleCard/SimpleCard';
 import classes from './TeamDashboard.module.css';
-import TeamListModal from '../../components/Modal/TeamListModal';
+import PlayersListModal from '../../components/Modal/PlayersListModal';
 import axios from 'axios';
 
 export default class PlayerDashboard extends Component {
@@ -62,7 +62,7 @@ export default class PlayerDashboard extends Component {
               )
             })}
           </div>
-          <TeamListModal
+          <PlayersListModal
             open = {this.state.modalOpen}
             handleClose = {this.modalClose}
             teamDetails = {this.state.teamDetails}

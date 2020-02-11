@@ -47,7 +47,7 @@ router.get('/', (req,res) => {
           required: false
         },
         {
-          attributes: ['name', 'id'],
+          attributes: ['name', 'id', 'dept', 'role', 'hostel', 'price'],
           model: Players,
           as: 'players',
           required: false
@@ -78,7 +78,7 @@ router.get('/:teamId', (req,res) => {
           required: false
         },
         {
-          attributes: ['name', 'id'],
+          attributes: ['name', 'id', 'dept', 'role', 'hostel', 'price'],
           model: Players,
           as: 'players',
           required: false

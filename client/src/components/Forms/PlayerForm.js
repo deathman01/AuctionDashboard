@@ -75,10 +75,16 @@ class PlayerForm extends Component {
   clearFields = () => {
     this.setState({
       id: '',
-      team_name: '',
-      captain_id: '',
-      desc: '',
-      balance: '',
+      name: '',
+      phone: '',
+      whatsApp: '',
+      role: '',
+      hostel: '',
+      dept: '',
+      battingHand: '',
+      bowlingHand: '',
+      availability: '',
+      parice: '',
     })
   }
 
@@ -121,6 +127,7 @@ class PlayerForm extends Component {
           />
           <br/>
           <TextField
+            required
             variant = "outlined"
             label = "Hostel/Hall/Day Scholars"
             placeholder = "Sen Hall"
@@ -129,6 +136,7 @@ class PlayerForm extends Component {
             onChange = {(event) => this.setState({hostel: event.target.value})}
           />
           <TextField
+            required
             variant = "outlined"
             label = "Dept./Course/Yr"
             placeholder = "IT/UG/4th"
@@ -155,40 +163,46 @@ class PlayerForm extends Component {
               <MenuItem value= 'all_rounder'>All-Rounder</MenuItem>
             </Select>
           </FormControl>
-          <FormControl
-            variant="outlined"
-            style = { styles.textField }
-            required
-          >
-            <InputLabel id= 'batting_select_label'>Batting Hand(Batsman/All-Rounder)</InputLabel>
-            <Select
-              labelid = 'batting_select_label'
-              id="gender"
-              variant= "outlined"
-              value = {this.state.battingHand}
-              onChange= {(event) => this.setState({battingHand: event.target.value})}
-            >
-              <MenuItem value= 'l'>Left</MenuItem>
-              <MenuItem value= 'r'>Right</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl
-            variant="outlined"
-            style = { styles.textField }
-            required
-          >
-            <InputLabel id = 'bowling_select_label'>Bowling Hand(Bowler/All-Rounder)</InputLabel>
-            <Select
-              labelid = 'bowling_select_label'
-              id="gender"
-              variant= "outlined"
-              value = {this.state.bowlingHand}
-              onChange= {(event) => this.setState({bowlingHand: event.target.value})}
-            >
-              <MenuItem value= 'l'>Left</MenuItem>
-              <MenuItem value= 'r'>Right</MenuItem>
-            </Select>
-          </FormControl>
+          {
+            (this.state.role === 'batsman' || this.state.role === 'all_rounder') &&
+              <FormControl
+                variant="outlined"
+                style = { styles.textField }
+                required
+              >
+                <InputLabel id= 'batting_select_label'>Batting Hand:</InputLabel>
+                <Select
+                  labelid = 'batting_select_label'
+                  id="gender"
+                  variant= "outlined"
+                  value = {this.state.battingHand}
+                  onChange= {(event) => this.setState({battingHand: event.target.value})}
+                >
+                  <MenuItem value= 'l'>Left</MenuItem>
+                  <MenuItem value= 'r'>Right</MenuItem>
+                </Select>
+              </FormControl>
+          }
+          {
+            (this.state.role === 'bowler'|| this.state.role === 'all_rounder') &&
+              <FormControl
+                variant="outlined"
+                style = { styles.textField }
+                required
+              >
+                <InputLabel id = 'bowling_select_label'>Bowling Hand:</InputLabel>
+                <Select
+                  labelid = 'bowling_select_label'
+                  id="gender"
+                  variant= "outlined"
+                  value = {this.state.bowlingHand}
+                  onChange= {(event) => this.setState({bowlingHand: event.target.value})}
+                >
+                  <MenuItem value= 'l'>Left</MenuItem>
+                  <MenuItem value= 'r'>Right</MenuItem>
+                </Select>
+              </FormControl>
+          }
           <br/>
           <TextField
             variant = "outlined"
@@ -200,6 +214,7 @@ class PlayerForm extends Component {
           />
           <br/>
           <TextField
+            required
             variant = "outlined"
             label = "Availability"
             placeholder = "28th Feb, 29th Feb, 1st March "
@@ -233,11 +248,13 @@ class PlayerForm extends Component {
 
 const styles = {
   container: {
-    margin: 15,
     width: '100%',
+    border: '2px solid black' ,
+    borderRadius: 5,
   },
   textField: {
-    margin: 10,
+    marginLeft: 10,
+    marginTop: 10,
     minWidth: '30%'
   },
   button: {

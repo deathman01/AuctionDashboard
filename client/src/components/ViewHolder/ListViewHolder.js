@@ -48,19 +48,18 @@ class ListViewHolder extends Component{
   }
 
   renderDetails = (item, viewType) => {
-    console.log('item in render details', item);
     switch(viewType) {
       case 'teams' :
         return <div>
           <Typography
             style = {{fontSize: 16}}
           >
-            Captain: { item.captain.name }
+            Captain: { item.captain.name.toUpperCase() }
           </Typography>
           <Typography
             style = {{fontSize: 16}}
           >
-            No. of Players: { item.noOfPlayers }
+            No. of Players: { item.players.length }
           </Typography>
           <Typography
             style = {{fontSize: 20}}
@@ -99,12 +98,17 @@ class ListViewHolder extends Component{
           <Typography
             style = {{fontSize: 20}}
           >
-            Captain: { item.captain.name }
+            Phone: { item.phone }
           </Typography>
           <Typography
             style = {{fontSize: 20}}
           >
-            Wallet Balance: { item.balance }
+            Email: { item.email }
+          </Typography>
+          <Typography
+            style = {{fontSize: 20}}
+          >
+            Role: { item.role.toUpperCase() }
           </Typography>
         </div>
 
@@ -119,8 +123,7 @@ class ListViewHolder extends Component{
         item lg = {12}
         key = { item.id }
       >
-      <Card align = 'start' style = {{ margin: 5,}}>
-        <CardContent style = { styles.actionAreaCard }>
+      <Card align = 'start' style = {{ backgroundColor: Colors.BACKGROUND, margin: 5,}}>
           <div
             style = {styles.caption}
           >
@@ -141,7 +144,7 @@ class ListViewHolder extends Component{
                 <Typography
                   style = {{textDecoration: 'underline', fontSize: 30}}
                 >
-                  { item.name }
+                  { item.name.toUpperCase() }
                 </Typography>
                 <Typography
                   style = {{fontSize: 14}}
@@ -167,7 +170,6 @@ class ListViewHolder extends Component{
               </Grid>
             </Grid>
           </div>
-        </CardContent>
       </Card>
     </Grid>
     )
@@ -230,7 +232,7 @@ const styles = {
   button: {
     margin: 5,
     color: 'white',
-    background: 'purple',
+    background: Colors.PRIMARY,
   },
 };
 

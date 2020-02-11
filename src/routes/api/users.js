@@ -4,10 +4,9 @@ var middleware = require('../../middleware');
 var bcrypt = require('bcrypt');
 var express = require('express');
 var router = express.Router();
-var { Users } = require('../../models');
+var { Users, Teams } = require('../../models');
 
 router.post('/signup', async(req, res) => {
-
   const hash = bcrypt.hashSync(req.body.password, 10);
 
   try {
@@ -34,6 +33,50 @@ router.post('/signup', async(req, res) => {
     console.log('signup err--------',err);
     return res.status(400).send('invalid params');
   }
+});
+
+router.get('/', middleware.checkToken, (req,res) => {
+  Users.findAll({
+    attributes: ['id','name', 'email', 'phone', 'role'],
+    include: [{
+      attributes: ['name', 'id'],
+      model: Teams,
+    }]
+  })
+  .then(users => {
+    return res.json({
+      success: true,
+      count: users.length,
+      users,
+    })
+  })
+  .catch(e => {
+    console.log('get players list err--------', e);
+    return res.status(400).send('try again');
+  })
+});
+
+router.get('/:userId', middleware.checkToken, (req,res) => {
+    Users.findOne({
+      attributes: ['id','name', 'email', 'phone','role'],
+      include: [
+        {
+          attributes: ['name', 'id'],
+          model: Teams,
+        }
+      ],
+      where: {id: req.params.userId}
+    })
+    .then(player => {
+      return res.json({
+        success: true,
+        ...player.dataValues,
+      })
+    })
+    .catch(e => {
+      console.log('get player by id err--------', e);
+      return res.status(400).send('try again');
+    })
 });
 
 router.post('/login', async (req, res) => {

@@ -17,8 +17,8 @@ import * as Colors from '../configs/Colors'
 class Admin extends Component{
   state = {
     loggedIn: true,
-    userDetails: {},
-    token: '',
+    userDetails: {name: 'A360'},
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNDNmNDVmYS03ODYyLTRmODctOTVlYi1lNDU3OWQ1ZTU4MzMiLCJ1c2VybmFtZSI6ImEzNjBAYWRtaW4uZGV2IiwiaWF0IjoxNTgxNDM2OTc4LCJleHAiOjE1ODE1MjMzNzh9.EAhxfQeRuWltjSO41nEgyRdfn5Oq1XFmyvdQvlhVP40",
     control: 'players',
     users: [],
     players: [],
@@ -48,7 +48,20 @@ class Admin extends Component{
     })
   }
 
+  loadUsers = () => {
+    this.adminRequests.get('', this.state.token).then(res => {
+      console.log('data in get user', res);
+      this.setState({
+        users: res.users
+      })
+    })
+  }
+
   changeControl = (control) =>{
+    if(control === 'users'){
+      this.loadUsers();
+    }
+
     this.setState({
       control,
     })
@@ -65,6 +78,13 @@ class Admin extends Component{
     const token = this.state.token;
     this.playersRequests.post(player, 'add', token ).then(res => {
       console.log('res add player', res);
+    })
+  }
+
+  handleAddUser = async (user) => {
+    const token = this.state.token;
+    this.adminRequests.post(user, 'signup', token ).then(res => {
+      console.log('res add user', res);
     })
   }
 
@@ -131,6 +151,7 @@ class Admin extends Component{
                     control = {this.state.control}
                     handleAddTeam = {this.handleAddTeam}
                     handleAddPlayer = {this.handleAddPlayer}
+                    handleAddUser = {this.handleAddUser}
                   />
                 </Grid>
                 <Grid item xs={12} sm={5}>

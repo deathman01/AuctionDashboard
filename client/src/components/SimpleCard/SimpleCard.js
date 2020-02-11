@@ -16,17 +16,17 @@ class SimpleCard extends Component {
         <div>
           <Typography
             style = {styles.title}
-            variant="h4"
-            component="h2"
+            variant="h5"
+            component="h3"
           >
-            {name}
+            {name.toUpperCase()}
           </Typography>
           {/*<div className={myclasses.Avatar}>
             {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
           </div>*/}
           <div style = {{marginTop: 30}}>
-            <Typography style = {{fontSize: 20}} component="p">
-              Team Captain: <strong>{captain}</strong>
+            <Typography style = {{fontSize: 20,}} component="p">
+              Team Captain: <strong>{captain.toUpperCase()}</strong>
             </Typography>
             <Typography style = {{fontSize: 20}} component="p">
               Remaining Balance: <strong>{balance}</strong>
@@ -55,6 +55,7 @@ const styles = {
   },
   title: {
     padding: 5,
+    textDecoration: 'underline',
     backgroundColor: Colors.PRIMARY,
     color: Colors.WHITE,
   },

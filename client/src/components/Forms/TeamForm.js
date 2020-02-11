@@ -81,7 +81,6 @@ class TeamForm extends Component {
             value = {this.state.desc}
             onChange = {(event) => this.setState({desc: event.target.value})}
           />
-          <br/>
           <TextField
             variant = "outlined"
             label = "Initial Balance"
@@ -116,10 +115,12 @@ class TeamForm extends Component {
 
 const styles = {
   container: {
-    margin: 15,
+    border: '2px solid black' ,
+    borderRadius: 5,
     width: '100%',
   },
   textField: {
+    marginLeft: 10,
     marginTop: 10,
   },
   button: {
