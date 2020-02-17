@@ -18,7 +18,7 @@ class Admin extends Component{
   state = {
     loggedIn: true,
     userDetails: {name: 'A360'},
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNDNmNDVmYS03ODYyLTRmODctOTVlYi1lNDU3OWQ1ZTU4MzMiLCJ1c2VybmFtZSI6ImEzNjBAYWRtaW4uZGV2IiwiaWF0IjoxNTgxNDM2OTc4LCJleHAiOjE1ODE1MjMzNzh9.EAhxfQeRuWltjSO41nEgyRdfn5Oq1XFmyvdQvlhVP40",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNDNmNDVmYS03ODYyLTRmODctOTVlYi1lNDU3OWQ1ZTU4MzMiLCJ1c2VybmFtZSI6ImEzNjBAYWRtaW4uZGV2IiwiaWF0IjoxNTgxODc3ODQ1LCJleHAiOjE1ODE5NjQyNDV9.lb_nRiavujc4Rmfl-zBXYKNN7Hb_xoX533lsAJZOxUA",
     control: 'players',
     users: [],
     players: [],

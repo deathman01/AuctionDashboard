@@ -10,6 +10,7 @@ import LetterAvatars from '../../../../components/Positionbadges/Positionbadges'
 
 const PlayerInfo = (props) => {
   const {role, battingHand, bowlingHand } = props.player;
+
   let playStyle = '';
   let department = props.player.dept
   if(props.player.dept === "Electronics and Telecommunication Engineering"){
@@ -19,34 +20,35 @@ const PlayerInfo = (props) => {
     department = "Architecture"
   }
 
-  if(role === 'batsman'){
-    if(battingHand === 'r')
+  if(role === 'Batsman'){
+    console.log('player role:', role);
+    if(battingHand === 'Right')
       playStyle = 'Right-Hand Batsman'
 
-    if(battingHand === 'l')
+    if(battingHand === 'Left')
       playStyle = 'Left-Hand Batsman'
   }
 
-  if(role === 'bowler'){
-    if(bowlingHand === 'r')
+  if(role === 'Bowler'){
+    if(bowlingHand === 'Right')
       playStyle = 'Right-Hand Bowler'
 
-    if(bowlingHand === 'l')
+    if(bowlingHand === 'Left')
       playStyle = 'Left-Hand Bowler'
   }
 
-  if(role === 'all_rounder'){
+  if(role === 'All-Rounder'){
     var temp = '';
-    if(battingHand === 'r')
+    if(battingHand === 'Right')
       temp = 'Right-Hand Batsman'
 
-    if(battingHand === 'l')
+    if(battingHand === 'Left')
       temp = 'Left-Hand Batsman'
 
-    if(bowlingHand === 'r')
+    if(bowlingHand === 'Right')
       playStyle = temp + ' & Right-Hand Bowler'
 
-    if(bowlingHand === 'l')
+    if(bowlingHand === 'Left')
       playStyle = temp + ' & Left-Hand Bowler'
   }
 
@@ -58,7 +60,7 @@ const PlayerInfo = (props) => {
             component="h2"
             style = {{padding: 5, color: Colors.WHITE, backgroundColor: Colors.PRIMARY}}
           >
-            {props.player.name}
+            {props.player.name.toUpperCase()}
           </Typography>
           <Grid
             container
@@ -67,7 +69,7 @@ const PlayerInfo = (props) => {
           >
             <Grid item xs = {4}>
               <ImageAvatars
-                image = {props.player.Number}
+                image = {props.player.picUrl}
                 size = "big"
                 team = {props.player.Team}
               />
@@ -86,12 +88,27 @@ const PlayerInfo = (props) => {
               <Typography variant="h5">
                 Resident of <strong>{props.player.hostel}</strong>
               </Typography>
-              <LetterAvatars position = {props.player.role}/>
+              <Typography align = 'center' style = {styles.roleFont} variant="h4">
+                <strong>{props.player.role.toUpperCase()}</strong>
+              </Typography>
             </Grid>
           </Grid>
         </Card>
     </div>
   )
+}
+
+const styles = {
+  roleFont: {
+    marginTop: 20,
+    marginLeft: 50,
+    marginRight: 50,
+    padding: 5,
+    color: Colors.SPECIAL_FONT,
+    border: '2px solid #6C6061',
+    borderRadius: 5,
+    boxShadow: "5px 3px 5px #9E9E9E",
+  }
 }
 
 export default PlayerInfo;

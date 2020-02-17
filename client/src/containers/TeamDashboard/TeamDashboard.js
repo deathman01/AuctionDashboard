@@ -12,15 +12,15 @@ export default class PlayerDashboard extends Component {
         players: []
       },
       modalOpen: false,
-      teams: []
+      teams: [ ]
     }
   }
 
-  componentWillMount(){
-    this.setState({
-      teams: this.props.teams
-    })
-  }
+  // componentWillMount(){
+  //   this.setState({
+  //     teams: this.props.teams
+  //   })
+  // }
 
   modalClose = () => {
     this.setState({
@@ -45,8 +45,8 @@ export default class PlayerDashboard extends Component {
   render() {
     return (
       <div>
-        <div className={classes.fullscreen}>
-          <div className={classes.Card}>
+        <div className = {classes.fullscreen}>
+          <div className = {classes.Card}>
             {this.props.teams.map((team, index) => {
               return (
                 <SimpleCard

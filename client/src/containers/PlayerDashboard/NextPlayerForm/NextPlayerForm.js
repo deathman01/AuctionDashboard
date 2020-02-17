@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   container: {
     justifyContent: 'center',
-    marginTop: "250px",
+    marginTop: "150px",
   },
   button: {
     margin: theme.spacing.unit,
@@ -46,6 +46,11 @@ class NextPlayerForm extends React.Component {
 
     return (
       <div className = {classes.container}>
+        <img
+          src = {'assets/ipl_logo.png'}
+          alt = 'event logo here'
+          style = {{margin: 20, height: 200, width: 200}}
+        />
         <div>
           <TextField
             id = "outlined-name"
@@ -63,7 +68,7 @@ class NextPlayerForm extends React.Component {
           onClick={this.props.clicked}
           className={classes.button}
         >
-          Rules
+          Go Back
         </Button>
         <Button
           variant="contained"

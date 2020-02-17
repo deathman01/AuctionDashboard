@@ -13,9 +13,9 @@ class Home extends Component {
   state = {
     displayWelcomePage: true,
     displayPlayerDetail: false,
-    teams: [],
+    teams: [ ],
     player: null,
-    auctionScore: 0,
+    auctionScore: 100,
     selectTeam: false,
     playerTeam: "",
     loading: false
@@ -29,13 +29,17 @@ class Home extends Component {
   }
 
   componentDidMount(){
+    this.fetchTeams();
+  }
+
+  fetchTeams = () => {
     this.teamsRequests.get().then(res => {
       console.log('data in get teams', res);
       if(res.success){
         this.setState({
           teams: res.teams
         })
-      }  
+      }
     })
   }
 
@@ -68,6 +72,10 @@ class Home extends Component {
 
   auctionDecrement = (amt) => {
     let decreasedPoints = this.state.auctionScore - amt;
+
+    if(decreasedPoints<0)
+     return;
+
     this.setState({
       auctionScore: decreasedPoints
     })
@@ -75,7 +83,7 @@ class Home extends Component {
 
   auctionReset = () => {
     this.setState({
-      auctionScore: 0
+      auctionScore: 100
     })
   }
 
@@ -100,7 +108,7 @@ class Home extends Component {
       displayWelcomePage: false,
       displayPlayerDetail: false,
       player: null,
-      auctionScore: 0,
+      auctionScore: 100,
       selectTeam: false,
       playerTeam: "",
     })
@@ -114,8 +122,9 @@ class Home extends Component {
 
     axios.put(`http://localhost:5000/api/players/assignTeam`, {teamId, playerId: player.id, price})
     .then(res => {
+      this.fetchTeams();
+
       this.setState({
-        teams: res.data,
         displayWelcomePage: false,
         displayPlayerDetail: false,
         player: null,
@@ -132,7 +141,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <Grid container spacing={0}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={5}>
             <div
               style = {styles.holder}
             >
@@ -158,7 +167,7 @@ class Home extends Component {
               />
             </div>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={7}>
             <div
               style = {styles.holder}
             >

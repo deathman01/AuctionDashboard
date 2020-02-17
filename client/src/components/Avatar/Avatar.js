@@ -17,11 +17,11 @@ const styles = {
   },
   bigAvatarSold: {
     margin: 10,
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
     position: "absolute",
-    top: "20px",
-    left: "40px",
+    top: "220px",
+    left: "150px",
     opacity: "0.6"
   },
   smallAvatar: {
@@ -33,27 +33,38 @@ const styles = {
 
 const ImageAvatars = (props) => {
   const { classes } = props;
-  let src = `assets/${props.image}.jpg`;
+  let src = props.image;
   let size = props.size;
-  let team = props.team
+  let team = props.team;
+
+  if(props.type === 'captain'){
+    return (
+      <Avatar
+        alt = "o" src = {src}
+        className = {classes.bigAvatar}
+      />
+    );
+  }
+
   if(size === "big"){
     if(team === null){
       return (
         <Avatar
-          alt="o" src = 'https://img.icons8.com/wired/128/000000/circled-user.png'
-          className={classes.bigAvatar}
+          alt = "o" src = {props.image}
+          className = {classes.bigAvatar}
         />
       );
     }else{
       return (
         <div>
-          <Avatar alt="o" src = 'https://img.icons8.com/wired/128/000000/circled-user.png' className={classes.bigAvatar} />
-          <Avatar alt="o" src='assets/sold.png' className={classes.bigAvatarSold} />
+          <Avatar alt="o" src = {props.image} className={classes.bigAvatar} />
+          <Avatar alt="o" src='assets/ipl_sold.png' className={classes.bigAvatarSold} />
         </div>
 
       );
     }
   }
+
   if(size === "small"){
     return (
       <Avatar alt="o" src={src} className={classes.smallAvatar} />

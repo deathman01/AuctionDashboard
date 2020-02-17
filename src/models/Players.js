@@ -51,11 +51,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.INTEGER,
+      defaultValue: 100,
       allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,

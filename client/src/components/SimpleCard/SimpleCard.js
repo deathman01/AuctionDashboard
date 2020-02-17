@@ -21,15 +21,18 @@ class SimpleCard extends Component {
           >
             {name.toUpperCase()}
           </Typography>
-          {/*<div className={myclasses.Avatar}>
-            {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
-          </div>*/}
-          <div style = {{marginTop: 30}}>
+          <div>
+            <ImageAvatars image = {`assets/captains/${id}.jpg`} size = 'big' type = 'captain'/>
+          </div>
+          <div style = {{marginTop: 10}}>
             <Typography style = {{fontSize: 20,}} component="p">
-              Team Captain: <strong>{captain.toUpperCase()}</strong>
+              Captain:
+            </Typography>
+            <Typography style = {{fontSize: 20,}} component="p">
+              <strong>{captain.toUpperCase()}</strong>
             </Typography>
             <Typography style = {{fontSize: 20}} component="p">
-              Remaining Balance: <strong>{balance}</strong>
+              Balance: <strong>{balance}</strong>
             </Typography>
             <Typography style = {{fontSize: 20}} component="p">
               No of Players: <strong>{noOfPlayers}</strong>

@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TeamsRadio from './TeamsRadio';
 import myclasses from './SimpleModal.module.css';
+import * as Colors from '../../configs/Colors';
 
 function getModalStyle() {
   const top = 50
@@ -27,6 +28,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 4,
     outline: 'none',
   },
+  
 });
 
 class SimpleModal extends React.Component {
@@ -74,7 +76,7 @@ class SimpleModal extends React.Component {
       </div>
     }
     return (
-      <div>
+      <div style = {styles.holder}>
         <Modal
           aria-labelledby = "simple-modal-title"
           aria-describedby = "simple-modal-description"
