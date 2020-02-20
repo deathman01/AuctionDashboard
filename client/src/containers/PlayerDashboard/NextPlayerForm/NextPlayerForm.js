@@ -1,30 +1,4 @@
-// import React from 'react';
-// // import PropTypes from 'prop-types'
-// import Aux from '../../../hoc/Auxillary';
-
-
-// const NextPlayerForm = props => {
-//   return (
-//       <Aux>
-//       <h1>Next Player Form</h1>
-//       <p>Enter the number of the player.</p>
-//       <form onSubmit={props.handleSubmit}>
-//         <label>
-//           Name:
-//           <input type="text" onChange={props.handleChange} />
-//         </label>
-//         <input type="submit" value="Submit" />
-//       </form>
-//       <button onClick={props.clicked}>Rules</button>
-//       </Aux>
-//   )
-// }
-
-// // NextPlayerForm.propTypes = {
-
-// // }
-
-// export default NextPlayerForm
+//abhishek360
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -32,14 +6,11 @@ import Icon from '@material-ui/core/Icon';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Aux from '../../../hoc/Auxillary';
+
 const styles = theme => ({
   container: {
     justifyContent: 'center',
-    marginTop: "250px"
-    // position:"relative",
-    // top: "25%",
-    // left: "25%"
+    marginTop: "150px",
   },
   button: {
     margin: theme.spacing.unit,
@@ -59,10 +30,14 @@ const styles = theme => ({
   },
 });
 
-class OutlinedTextFields extends React.Component {
-  handleChange = name => event => {
+class NextPlayerForm extends React.Component {
+  state = {
+    playerNo: 1,
+  }
+
+  handleChange = (event) => {
     this.setState({
-      [name]: event.target.value,
+      playerNo: event.target.value,
     });
   };
 
@@ -70,34 +45,46 @@ class OutlinedTextFields extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Aux>
-      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.props.handleSubmit}>
-      <div>
-      <TextField
-      id="outlined-name"
-      label="Number"
-      className={classes.textField}
-      onChange={this.props.handleChange}
-      margin="normal"
-      variant="outlined"
-    />
+      <div className = {classes.container}>
+        <img
+          src = {'assets/ipl_logo.png'}
+          alt = 'event logo here'
+          style = {{margin: 20, height: 200, width: 200}}
+        />
+        <div>
+          <TextField
+            id = "outlined-name"
+            label = "Player Number"
+            placeholder = '10'
+            className = {classes.textField}
+            onChange = {this.handleChange}
+            margin = "normal"
+            variant = "outlined"
+          />
+        </div>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.props.clicked}
+          className={classes.button}
+        >
+          Go Back
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick = {() => this.props.handleSubmit(this.state.playerNo)}
+          className={classes.button}
+        >
+          Start <Icon className={classes.rightIcon}>send</Icon>
+        </Button>
       </div>
-      <Button variant="contained" color="secondary" onClick={this.props.clicked} className={classes.button}>
-      Rules
-    </Button>
-        <Button variant="contained" color="primary" value="Submit" type="Submit" className={classes.button}>
-        Send
-        <Icon className={classes.rightIcon}>send</Icon>
-      </Button>
-      </form>
-      </Aux>
-      
     );
   }
 }
 
-OutlinedTextFields.propTypes = {
+NextPlayerForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedTextFields);
+export default withStyles(styles)(NextPlayerForm);

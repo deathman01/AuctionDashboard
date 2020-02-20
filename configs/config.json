@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "a360",
+    "password": "a360@dev",
+    "database": "online_auction_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "abhishek360",
+    "password": "Database@12345",
+    "database": "photo_forum_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

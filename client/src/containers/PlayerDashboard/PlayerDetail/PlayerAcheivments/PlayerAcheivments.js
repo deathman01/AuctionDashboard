@@ -4,9 +4,9 @@ import classes from './PlayerAcheivments.module.css';
 const PlayerAcheivments = () => {
   return (
     <div className={classes.board}>
-    <Typography variant="h4" component="h2">
-    Auction Board
-  </Typography>
+      <Typography variant="h4" component="h2">
+        Auction Board
+      </Typography>
     </div>
   )
 }
