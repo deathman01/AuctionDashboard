@@ -11,7 +11,7 @@ export default function Welcome(props) {
     <div>
       <div style = {{marginTop: 100}}>
         <Typography style = {styles.title} variant="h3" component="h2">
-          Players Selection System
+         Selection System
         </Typography>
         <br/>
         <Typography variant="h3" component="h2">
